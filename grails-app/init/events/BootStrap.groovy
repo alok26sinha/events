@@ -2,6 +2,8 @@ package events
 
 import grails.converters.JSON
 
+import java.text.SimpleDateFormat
+
 class BootStrap {
 
     def init = { servletContext ->
@@ -23,10 +25,10 @@ class BootStrap {
                     'id'              : it.id ?: "",
                     'eventName'       : it.eventName ?: "",
                     'eventDescription': it.eventDescription ?: "",
-                    'startDate'       : it.startDate ?: "",
-                    'endDate'         : it.endDate ?: "",
-                    'startTime'       : it.startTime ?: "",
-                    'endTime'         : it.endTime ?: "",
+                    'startDate'       : it.startDate ?new SimpleDateFormat("MM.dd.yyyy").format(it.startDate): "",
+                    'endDate'         : it.endDate ?new SimpleDateFormat("MM.dd.yyyy").format(it.endDate): "",
+                    'startTime'       : it.startTime ?new SimpleDateFormat("hh:mm").format(it.startTime) :  "",
+                    'endTime'         : it.endTime ?new SimpleDateFormat("hh:mm").format(it.endTime): "",
                     'recurringType'   : it.recurringType ?: "",
                     'separation'      : it.separation ?: "",
                     'maxCount'        : it.maxCount ?: "",
